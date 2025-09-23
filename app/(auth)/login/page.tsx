@@ -22,7 +22,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { login } = useAuthStore();
+  const { login, setProfile } = useAuthStore();
 
   const {
     register,
@@ -43,8 +43,13 @@ export default function LoginPage() {
       
       if (response.user && response.token) {
         console.log('Login successful, calling login function');
-        login(response.user, response.token);
+        login(response.user, null, response.token);
         
+        let profile = await authApi.getProfile();
+        console.log('Profile:', profile);
+        setProfile(profile);
+
+
         // For now, redirect to dashboard - you can add role-based routing later
         console.log('Redirecting to dashboard');
         router.push(ROUTES.DASHBOARD);

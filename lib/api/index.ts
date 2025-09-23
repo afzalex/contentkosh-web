@@ -41,6 +41,7 @@ export type { UpdateCourseRequest } from './models/UpdateCourseRequest';
 export type { UpdateExamRequest } from './models/UpdateExamRequest';
 export type { UpdateSubjectRequest } from './models/UpdateSubjectRequest';
 export type { User } from './models/User';
+export type { UserProfile } from './models/UserProfile';
 
 export { AnnouncementsService } from './services/AnnouncementsService';
 export { BatchesService } from './services/BatchesService';

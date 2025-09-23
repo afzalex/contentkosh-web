@@ -51,7 +51,12 @@ export default function RegisterPage() {
 
       const response = await authApi.register(registerData);
       if (response.user && response.token) {
-        login(response.user, response.token);
+        // Set the token before fetching business info
+        authApi.setToken(response.token);
+        
+        // For registration, we'll fetch business info separately since register doesn't return it
+        const businessResponse = await authApi.getBusiness();
+        login(response.user, businessResponse, response.token);
         
         // Redirect to dashboard after successful registration
         router.push(ROUTES.DASHBOARD);

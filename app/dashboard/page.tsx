@@ -10,7 +10,7 @@ import { StudentDashboard } from '@/components/dashboard/StudentDashboard';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export default function Dashboard() {
-  const { user, isAuthenticated, isLoading, isInitialized, initializeAuth, setLoading } = useAuthStore();
+  const { user, business, isAuthenticated, isLoading, isInitialized, initializeAuth, setLoading } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -67,12 +67,13 @@ export default function Dashboard() {
 
 // Default dashboard for users without specific roles
 function DefaultDashboard() {
+  const { business } = useAuthStore();
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <div className="text-sm text-gray-500">
-          Welcome to Contentkosh
+          Welcome to {business?.instituteName || 'Contentkosh'}
         </div>
       </div>
 
